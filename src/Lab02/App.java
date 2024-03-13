@@ -12,12 +12,16 @@ public class App {
 
         Renderer mainRenderer = new Renderer(args[0],Integer.parseInt(args[1]),Integer.parseInt(args[2]));
         mainRenderer.clear();
-        mainRenderer.drawPoint(100, 100);
+//        mainRenderer.drawLineBresenham(600,600, 300,300);
+        mainRenderer.drawLine(0,0,200,50, Renderer.LineAlgo.valueOf(args[3]));
+//        mainRenderer.drawLineNaive(599,599,500,100);
+//        mainRenderer.drawLineBresenham(600,600, 300,300);
         try {
             mainRenderer.save();
         } catch (IOException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     public String getVersion() {

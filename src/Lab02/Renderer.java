@@ -30,12 +30,44 @@ public class Renderer {
         if(lineAlgo == LineAlgo.BRESENHAM_INT) drawLineBresenhamInt(x0, y0, x1, y1);
     }
 
-    public void drawLineNaive(int x0, int y0, int x1, int y1) {
-        // TODO: zaimplementuj
+    public void drawLineNaive(int x0, int y0, int x1, int y1)
+    {
+        float dx = x1 - x0;
+        float dy = y1 - y0;
+        float steps = Math.max(Math.abs(dx),Math.abs(dy));
+
+        float xIncrement = dx / steps;
+        float yIncrement = dy / steps;
+        float x = x0;
+        float y = y0;
+
+        for(int i=0; i<= steps; i++)
+        {
+            drawPoint(Math.round(x), Math.round(y));
+            x += xIncrement;
+            y += yIncrement;
+        }
+
     }
 
     public void drawLineBresenham(int x0, int y0, int x1, int y1) {
-        // TODO: zaimplementuj
+        int white = 255 | (255 << 8) | (255 << 16) | (255 << 24);
+
+        int dx = x1-x0;
+        int dy = y1-y0;
+        float derr = Math.abs(dy/(float)(dx));
+        float err = 0;
+
+        int y = y0;
+
+        for (int x=x0; x<=x1; x++) {
+            render.setRGB(x, y, white);
+            err += derr;
+            if (err > 0.5) {
+                y += (y1 > y0 ? 1 : -1);
+                err -= 1.;
+            }
+        } // Oktanty: 2,3,4,5
     }
 
     public void drawLineBresenhamInt(int x0, int y0, int x1, int y1) {
