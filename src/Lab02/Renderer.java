@@ -11,14 +11,11 @@ public class Renderer {
     public enum LineAlgo { NAIVE, BRESENHAM, BRESENHAM_INT; }
 
     private BufferedImage render;
-    public final int h = 200;
-    public final int w = 200;
-
     private String filename;
     private LineAlgo lineAlgo = LineAlgo.NAIVE;
 
-    public Renderer(String filename) {
-        render = new BufferedImage(200, 200, BufferedImage.TYPE_INT_ARGB);
+    public Renderer(String filename, int width, int height) {
+        render = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
         this.filename = filename;
     }
 
@@ -53,8 +50,8 @@ public class Renderer {
     }
 
     public void clear() {
-        for (int x = 0; x < w; x++) {
-            for (int y = 0; y < h; y++) {
+        for (int x = 0; x < render.getWidth(); x++) {
+            for (int y = 0; y < render.getHeight(); y++) {
                 int black = 0 | (0 << 8) | (0 << 16) | (255 << 24);
                 render.setRGB(x, y, black);
             }

@@ -10,7 +10,7 @@ public class App {
 
     public static void main(String[] args) {
 
-        Renderer mainRenderer = new Renderer(System.getProperty("user.home")+"/render.png");
+        Renderer mainRenderer = new Renderer(args[0],Integer.parseInt(args[1]),Integer.parseInt(args[2]));
         mainRenderer.clear();
         mainRenderer.drawPoint(100, 100);
         try {
